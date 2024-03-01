@@ -1,41 +1,30 @@
-import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import AuthLayout from "./layouts/AuthLayout";
-import MainLayout from "./layouts/MainLayout";
-
-import { publicRoutes, privateRoutes } from "./routes/routes";
+import Welcome from "./pages/Welcome";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import ResetPasswordInfo from "./pages/ResetPasswordInfo";
+import Home from "./pages/Home";
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   return (
     <>
       <Router>
-        {isAuthenticated ? (
-          <Routes>
-            <Route path="/" element={<MainLayout />}>
-              {privateRoutes.map((route, index) => (
-                <Route
-                  key={index}
-                  path={route.path}
-                  element={route.element}
-                ></Route>
-              ))}
-            </Route>
-          </Routes>
-        ) : (
-          <Routes>
-            <Route path="/" element={<AuthLayout />}>
-              {publicRoutes.map((route, index) => (
-                <Route
-                  key={index}
-                  path={route.path}
-                  element={route.element}
-                ></Route>
-              ))}
-            </Route>
-          </Routes>
-        )}
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/reset-password-info" element={<ResetPasswordInfo />} />
+          <Route path="/home" element={<Home />} />
+        </Routes>
       </Router>
     </>
   );
