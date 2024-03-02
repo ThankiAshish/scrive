@@ -11,6 +11,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import ResetPasswordInfo from "./pages/ResetPasswordInfo";
 import Home from "./pages/Home";
+import Blog from "./pages/Blog";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Welcome />} />
             <Route path="/app" element={<Home />} />
+            <Route path="/blog" element={<Blog />} />
           </Route>
         </Routes>
       </Router>
