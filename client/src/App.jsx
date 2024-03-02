@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import MainLayout from "./layouts/MainLayout";
+
 import Welcome from "./pages/Welcome";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -15,7 +17,6 @@ const App = () => {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Welcome />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
@@ -23,7 +24,10 @@ const App = () => {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/reset-password-info" element={<ResetPasswordInfo />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<MainLayout />}>
+            <Route index element={<Welcome />} />
+            <Route path="/app" element={<Home />} />
+          </Route>
         </Routes>
       </Router>
     </>

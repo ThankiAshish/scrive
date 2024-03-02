@@ -17,11 +17,11 @@
     display: block !important;
   }
 
-  .nav-links {
+  .guest-nav .nav-links {
     display: none !important;
   }
 
-  .nav-links.active {
+  .guest-nav .nav-links.active {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;

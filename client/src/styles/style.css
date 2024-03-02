@@ -101,7 +101,7 @@ input {
   cursor: pointer;
 }
 
-/* Navbar */
+/* Navbar > Global */
 .nav {
   display: flex;
   justify-content: space-between;
@@ -141,6 +141,43 @@ input {
   align-items: center;
   justify-content: center;
   gap: 1rem;
+}
+
+/* Navbar > UserHeader */
+.user-nav .nav-links .create-btn {
+  background-color: var(--primary);
+  color: var(--background);
+  padding: 0.3rem 0.5rem;
+  border-radius: 3px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.user-nav .nav-links .create-btn:hover {
+  background-color: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+}
+
+.user-nav .nav-links img {
+  width: 50px;
+  aspect-ratio: 1 / 1;
+  border-radius: 40%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.user-nav .nav-links img:hover {
+  border-radius: 50%;
+}
+
+#user-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Pages > Welcome */
