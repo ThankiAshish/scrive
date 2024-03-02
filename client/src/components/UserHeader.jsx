@@ -11,12 +11,12 @@ const UserHeader = () => {
         </Link>
         <ul className="nav-links">
           <li>
-            <Link to="/app/create" className="create-btn">
+            <Link to="/create" className="create-btn">
               <FontAwesomeIcon icon={faAdd} />
               {/* &nbsp;Create */}
             </Link>
           </li>
-          <Link to="/app/profile" className="user-profile">
+          <Link to="/profile" className="user-profile">
             <img
               src="https://api.dicebear.com/7.x/adventurer/svg?seed=Ashish&scale=75&backgroundType=gradientLinear&earringsProbability=50&featuresProbability=50&glassesProbability=50&backgroundColor=b6e3f4,c0aede,d1d4f9"
               alt="avatar"

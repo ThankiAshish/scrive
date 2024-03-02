@@ -12,6 +12,7 @@ import ResetPassword from "./pages/ResetPassword";
 import ResetPasswordInfo from "./pages/ResetPasswordInfo";
 import Home from "./pages/Home";
 import Blog from "./pages/Blog";
+import Profile from "./pages/Profile";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
             <Route index element={<Welcome />} />
             <Route path="/app" element={<Home />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/profile" element={<Profile />} />
           </Route>
         </Routes>
       </Router>
