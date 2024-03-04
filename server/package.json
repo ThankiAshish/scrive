@@ -4,11 +4,13 @@
   "description": "NodeJS Server for Scrive (A blog web application)",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
   },
   "author": "Ashish Thanki",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
