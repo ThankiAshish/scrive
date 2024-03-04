@@ -90,6 +90,14 @@
     text-align: center !important;
   }
 
+  .reset-password-info p {
+    font-size: 0.8rem !important;
+  }
+
+  .reset-password-info .link-text {
+    font-size: 0.8rem !important;
+  }
+
   /* Pages > Home */
   .home .blog {
     align-items: center !important;

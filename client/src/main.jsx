@@ -11,7 +11,18 @@ import "./styles/queries.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ToastContainer />
+    <ToastContainer
+      position="top-right"
+      autoClose={3000}
+      hideProgressBar={false}
+      newestOnTop={true}
+      closeOnClick={true}
+      rtl={false}
+      pauseOnFocusLoss={false}
+      draggable={true}
+      pauseOnHover={false}
+      theme="dark"
+    />
     <App />
   </React.StrictMode>
 );

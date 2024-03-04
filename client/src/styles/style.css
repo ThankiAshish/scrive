@@ -9,6 +9,62 @@
   --white: #fbfffe;
   --secondary: #6f6866;
   --grey: #788585;
+  --success: #28a745;
+  --error: #dc3545;
+  --warning: #ffc107;
+  --toastify-color-dark: #001514;
+  --toastify-color-light: #fbfffe;
+  --toastify-color-info: #97cc04;
+  --toastify-color-success: #28a745;
+  --toastify-color-warning: #ffc107;
+  --toastify-color-error: #dc3545;
+  --toastify-color-progress-info: linear-gradient(to right, #001514, #97cc04);
+  --toastify-color-progress-success: linear-gradient(
+    to right,
+    #001514,
+    #28a745
+  );
+  --toastify-color-progress-warning: linear-gradient(
+    to right,
+    #001514,
+    #ffc107
+  );
+  --toastify-color-progress-error: linear-gradient(to right, #001514, #dc3545);
+  --toastify-color-progress-default: linear-gradient(
+    to right,
+    #001514,
+    #fbfffe
+  );
+  --toastify-color-progress-dark: linear-gradient(to right, #001514, #fbfffe);
+  --toastify-color-progress-light: linear-gradient(to right, #001514, #fbfffe);
+  --toastify-color-icon-default: #fbfffe;
+  --toastify-color-icon-dark: #001514;
+  --toastify-color-icon-light: #fbfffe;
+  --toastify-color-icon-info: #97cc04;
+  --toastify-color-icon-success: #28a745;
+  --toastify-color-icon-warning: #ffc107;
+  --toastify-color-icon-error: #dc3545;
+  --toastify-color-icon-progress-default: #fbfffe;
+  --toastify-color-icon-progress-dark: #001514;
+  --toastify-color-icon-progress-light: #fbfffe;
+  --toastify-color-icon-progress-info: #97cc04;
+  --toastify-color-icon-progress-success: #28a745;
+  --toastify-color-icon-progress-warning: #ffc107;
+  --toastify-color-icon-progress-error: #dc3545;
+  --toastify-color-background: #001514;
+  --toastify-color-progress-bar: #fbfffe;
+  --toastify-timing: 5000ms;
+  --toastify-font-family: "Poppins", sans-serif;
+  --toastify-font-size: 1rem;
+  --toastify-font-weight: 100;
+  --toastify-line-height: 1.5;
+  --toastify-letter-spacing: 0.01rem;
+  --toastify-max-width: 800px;
+  --toastify-margin: 0.5rem;
+  --toastify-padding: 1rem;
+  --toastify-border-radius: 4px;
+  --toastify-box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
+  --toastify-z-index: 9999;
 }
 
 * {
@@ -267,6 +323,21 @@ input {
 
 .auth-showcase .container .auth-box form .btn-container .btn {
   width: 38%;
+}
+
+.reset-password-info .container {
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px;
+  text-align: center;
+}
+
+.reset-password-info .container p {
+  color: var(--grey);
+}
+
+.reset-password-info .container .link-text {
+  color: var(--primary);
 }
 
 /* Pages > Home */

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -10,6 +11,15 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (formData.email === "" || formData.password === "") {
+      return toast.error("All fields are required");
+    }
+
+    if (formData.password.length < 8) {
+      return toast.error("Password must be at least 8 characters long");
+    }
+
+    toast.success("Form submitted successfully");
     console.log(formData);
   };
 
