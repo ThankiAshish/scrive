@@ -1,6 +1,7 @@
 @media screen and (max-width: 1024px) {
   .home {
     grid-template-columns: repeat(1, 1fr);
+    overflow: hidden !important;
   }
 
   .home .blog h2 {
@@ -48,6 +49,8 @@
     background: var(--background) !important;
     padding: 2rem !important;
     transition: all ease-in 0.3s !important;
+    z-index: 99999 !important;
+    overflow: hidden !important;
   }
 
   .nav .btn-container {

@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import UserProvider from "./context/UserContext";
+
 import MainLayout from "./layouts/MainLayout";
 
 import Welcome from "./pages/Welcome";
@@ -16,7 +18,7 @@ import Profile from "./pages/Profile";
 
 const App = () => {
   return (
-    <>
+    <UserProvider>
       <Router>
         <Routes>
           <Route path="/about" element={<About />} />
@@ -34,7 +36,7 @@ const App = () => {
           </Route>
         </Routes>
       </Router>
-    </>
+    </UserProvider>
   );
 };
 
