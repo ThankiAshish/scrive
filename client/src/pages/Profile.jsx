@@ -43,13 +43,6 @@ const Profile = () => {
   }, [loginState, userDetails]);
 
   const handleInputChange = (e) => {
-    if (e.target.id === "username") {
-      setUser({
-        ...user,
-        profilePicture: `https://api.dicebear.com/7.x/adventurer/svg?seed=${e.target.value}&scale=75&backgroundType=gradientLinear&earringsProbability=50&featuresProbability=50&glassesProbability=50&backgroundColor=b6e3f4,c0aede,d1d4f9`,
-      });
-    }
-
     setUser({ ...user, [e.target.id]: e.target.value });
   };
 
@@ -107,7 +100,7 @@ const Profile = () => {
           ) : (
             <>
               <img
-                src={user.profilePicture}
+                src={user.profilePicture + user.username}
                 alt={`${user.username} Profile Picture`}
               />
               <div className="user-details">

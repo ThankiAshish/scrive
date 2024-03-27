@@ -54,7 +54,6 @@ const login = async (email, password) => {
 
   user = {
     _id: user._id,
-    profilePicture: user.profilePicture,
     token,
   };
 

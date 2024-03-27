@@ -31,13 +31,8 @@ const getUserController = async (req, res) => {
 
 const updateUserController = async (req, res) => {
   try {
-    const { username, email, profilePicture } = req.body;
-    const user = await userServices.updateUser(
-      req.user._id,
-      username,
-      email,
-      profilePicture
-    );
+    const { username, email } = req.body;
+    const user = await userServices.updateUser(req.user._id, username, email);
 
     res.status(200).json({ user: user, message: "User Details Updated!" });
   } catch (error) {
