@@ -61,7 +61,35 @@ const login = async (email, password) => {
   return user;
 };
 
+const getUser = async (id) => {
+  const user = await User.findById(id).select("-password");
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  return user;
+};
+
+const updateUser = async (id, username, email, profilePicture) => {
+  const user = await User.findById(id);
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  user.username = username;
+  user.email = email;
+  user.profilePicture = profilePicture;
+
+  await user.save();
+
+  return user;
+};
+
 module.exports = {
   register,
   login,
+  getUser,
+  updateUser,
 };

@@ -20,4 +20,34 @@ const loginController = async (req, res) => {
   }
 };
 
-module.exports = { registerController, loginController };
+const getUserController = async (req, res) => {
+  try {
+    const user = await userServices.getUser(req.user._id);
+    res.status(200).json({ user: user });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+const updateUserController = async (req, res) => {
+  try {
+    const { username, email, profilePicture } = req.body;
+    const user = await userServices.updateUser(
+      req.user._id,
+      username,
+      email,
+      profilePicture
+    );
+
+    res.status(200).json({ user: user, message: "User Details Updated!" });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+module.exports = {
+  registerController,
+  loginController,
+  getUserController,
+  updateUserController,
+};

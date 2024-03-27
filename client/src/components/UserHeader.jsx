@@ -5,9 +5,7 @@ import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import UserStore from "../stores/UserStore";
 
 const UserHeader = () => {
-  const { user } = UserStore();
-
-  console.log(user);
+  const { userDetails } = UserStore();
 
   return (
     <div className="container">
@@ -22,8 +20,8 @@ const UserHeader = () => {
               {/* &nbsp;Create */}
             </Link>
           </li>
-          <Link to="/profile" className="user-profile">
-            <img src={user.profilePicture} alt="avatar" />
+          <Link to="/profile" className="user-profile-picture">
+            <img src={userDetails.profilePicture} alt="avatar" />
           </Link>
         </ul>
       </nav>

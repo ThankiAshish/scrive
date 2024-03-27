@@ -1,14 +1,16 @@
 import { create } from "zustand";
 
 const UserStore = create((set) => ({
-  user: JSON.parse(localStorage.getItem("user")) || null,
-  loginData: (user) => {
-    set({ user }), localStorage.setItem("user", JSON.stringify(user));
+  userDetails: JSON.parse(localStorage.getItem("userDetails")) || null,
+  loginData: (userDetails) => {
+    set({ userDetails }),
+      localStorage.setItem("userDetails", JSON.stringify(userDetails));
   },
-  loginState: JSON.parse(localStorage.getItem("user")) ? true : false,
+  loginState: JSON.parse(localStorage.getItem("userDetails")) ? true : false,
   setLoginState: (state) => set({ loginState: state }),
   logout: () => {
-    set({ user: null, loginState: false }), localStorage.removeItem("user");
+    set({ userDetails: null, loginState: false }),
+      localStorage.removeItem("userDetails");
   },
 }));
 
