@@ -1,21 +1,73 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
+import UserStore from "../stores/UserStore";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const { loginState } = UserStore();
+
+  useEffect(() => {
+    if (loginState) {
+      navigate("/app");
+    }
+  }, [loginState, navigate]);
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
     confirmPassword: "",
+    profilePicture: "",
   });
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    try {
+      if (formData.password.length < 8) {
+        return toast.error("Password must be at least 8 characters long");
+      }
+
+      if (formData.password !== formData.confirmPassword) {
+        return toast.error("Passwords do not match");
+      }
+
+      setFormData({
+        ...formData,
+        profilePicture: `https://api.dicebear.com/7.x/adventurer/svg?seed=${formData.username}&scale=75&backgroundType=gradientLinear&earringsProbability=50&featuresProbability=50&glassesProbability=50&backgroundColor=b6e3f4,c0aede,d1d4f9`,
+      });
+
+      const response = await fetch("api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.status === 201) {
+        toast.success(data.message);
+        setFormData({
+          username: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        });
+        navigate("/login");
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

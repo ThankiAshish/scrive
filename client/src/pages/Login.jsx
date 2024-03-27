@@ -1,16 +1,28 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import UserStore from "../stores/UserStore";
+
 const Login = () => {
+  const navigate = useNavigate();
+  const { loginData, loginState, setLoginState } = UserStore();
+
+  useEffect(() => {
+    if (loginState) {
+      navigate("/app");
+    }
+  }, [loginState, navigate]);
+
   const [formData, setFormData] = useState({ email: "", password: "" });
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (formData.email === "" || formData.password === "") {
       return toast.error("All fields are required");
     }
@@ -19,8 +31,28 @@ const Login = () => {
       return toast.error("Password must be at least 8 characters long");
     }
 
-    toast.success("Form submitted successfully");
-    console.log(formData);
+    try {
+      const response = await fetch("api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.status === 200) {
+        loginData(data.user);
+        setLoginState(true);
+        toast.success(data.message);
+        navigate("/app");
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

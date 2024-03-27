@@ -3,10 +3,10 @@ import { Outlet } from "react-router-dom";
 import GuestHeader from "../components/GuestHeader";
 import UserHeader from "../components/UserHeader";
 
-import AuthStore from "../helpers/auth.helper";
+import UserStore from "../stores/UserStore";
 
 const MainLayout = () => {
-  const { loginState } = AuthStore();
+  const { loginState } = UserStore();
 
   return (
     <div>

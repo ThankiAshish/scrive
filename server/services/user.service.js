@@ -7,11 +7,11 @@ const register = async (username, email, password, profilePicture) => {
   const existingUsername = await User.findOne({ username });
 
   if (existingUser) {
-    return res.status(400).json({ message: "User already exists" });
+    throw new Error("User already exists");
   }
 
   if (existingUsername) {
-    return res.status(400).json({ message: "Username already exists" });
+    throw new Error("Username already exists");
   }
 
   const salt = bcrypt.genSaltSync(10);
@@ -26,20 +26,20 @@ const register = async (username, email, password, profilePicture) => {
 
   await user.save();
 
-  return res.status(201).json({ message: "Registration Successful!" });
+  return user;
 };
 
 const login = async (email, password) => {
-  const user = await User.findOne({ email });
+  let user = await User.findOne({ email });
 
   if (!user) {
-    return res.status(400).json({ message: "Invalid credentials" });
+    throw new Error("Invalid credentials");
   }
 
   const isPasswordValid = bcrypt.compareSync(password, user.password);
 
   if (!isPasswordValid) {
-    return res.status(400).json({ message: "Invalid credentials" });
+    throw new Error("Invalid credentials");
   }
 
   const payload = {
@@ -49,18 +49,16 @@ const login = async (email, password) => {
   };
 
   const token = jwt.sign(payload, process.env.JWT_SECRET, {
-    expiresIn: "1h",
+    expiresIn: "7d",
   });
 
   user = {
     _id: user._id,
-    username: user.username,
-    email: user.email,
     profilePicture: user.profilePicture,
     token,
   };
 
-  return res.status(200).json({ user });
+  return user;
 };
 
 module.exports = {

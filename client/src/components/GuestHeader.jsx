@@ -9,7 +9,7 @@ const GuestHeader = () => {
   return (
     <div className="container">
       <nav className="nav guest-nav">
-        <Link to="/">
+        <Link to="/app">
           <h1 className="logo">Scrive</h1>
         </Link>
         <ul className={`nav-links ${isOpen ? "active" : ""}`}>
