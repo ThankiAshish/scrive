@@ -299,7 +299,8 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
   cursor: pointer;
   border-radius: 5px;
   gap: 1rem;
-  padding: 1rem;
+  z-index: 999 !important;
+  width: 300px;
 }
 
 .uploader .default-preview {
@@ -308,6 +309,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  padding: 1rem;
 }
 
 .uploader .default-preview .icon {
@@ -326,6 +328,47 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  padding: 1rem;
+  position: relative;
+}
+
+.uploader .image-preview img {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.uploader .image-preview .clear-button {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  cursor: pointer;
+  color: var(--white);
+  background: rgba(0, 21, 20, 0.567);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 0.6rem;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  z-index: 99999 !important;
+  transition: all 0.3s ease;
+}
+
+.uploader .image-preview .clear-button:hover {
+  background: rgba(0, 21, 20, 0.8);
+}
+
+/* Components > Quill */
+.quill {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ql-toolbar,
+.ql-container {
+  border: 1px solid var(--white) !important;
+  border-radius: 4px;
 }
 
 /* Pages > Welcome */
@@ -706,5 +749,15 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
 .create-blog form {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
   gap: 2rem;
+}
+
+.create-blog form input {
+  width: 100%;
+}
+
+.create-blog form .btn {
+  width: 100%;
 }

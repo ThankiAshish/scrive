@@ -1,14 +1,17 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloudArrowUp, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-const Uploader = () => {
-  const [image, setImage] = useState(null);
+const Uploader = ({ cover, setCover }) => {
   const [fileName, setFileName] = useState("");
 
-  const clearImage = () => {
-    setImage(null);
+  const clearImage = (e) => {
+    e.stopPropagation();
+    setCover(null);
     setFileName("");
+    document.getElementById("cover").value = null;
   };
 
   return (
@@ -28,14 +31,14 @@ const Uploader = () => {
           files[0] && setFileName(files[0].name);
           if (files) {
             const reader = new FileReader();
-            reader.onload = () => setImage(reader.result);
+            reader.onload = () => setCover(reader.result);
             reader.readAsDataURL(files[0]);
           }
         }}
       />
-      {image ? (
+      {cover ? (
         <div className="image-preview">
-          <img src={image} alt={fileName} className="file-preview" />
+          <img src={cover} alt={fileName} className="file-preview" />
           <button className="clear-button" onClick={clearImage}>
             <FontAwesomeIcon icon={faTimes} className="icon" />
           </button>
@@ -48,6 +51,11 @@ const Uploader = () => {
       )}
     </main>
   );
+};
+
+Uploader.propTypes = {
+  cover: PropTypes.string.isRequired,
+  setCover: PropTypes.func.isRequired,
 };
 
 export default Uploader;

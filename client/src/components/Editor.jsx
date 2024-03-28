@@ -4,7 +4,14 @@ import PropTypes from "prop-types";
 import "react-quill/dist/quill.snow.css";
 
 const Editor = ({ value, onChange }) => {
-  return <ReactQuill value={value} onChange={onChange} theme="snow" />;
+  return (
+    <ReactQuill
+      value={value}
+      onChange={onChange}
+      theme="snow"
+      className="quill"
+    />
+  );
 };
 
 Editor.propTypes = {

@@ -52,7 +52,7 @@ const Create = () => {
             value={summary}
             onChange={(e) => setSummary(e.target.value)}
           />
-          <Uploader />
+          <Uploader cover={cover} setCover={setCover} />
           <Editor value={content} onChange={setContent} />
           <button type="submit" className="btn">
             Create Blog
