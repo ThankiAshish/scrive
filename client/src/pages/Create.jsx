@@ -8,7 +8,7 @@ import Editor from "../components/Editor";
 import UserStore from "../stores/UserStore";
 
 const Create = () => {
-  const { loginState } = UserStore();
+  const { loginState, userDetails } = UserStore();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,12 +23,35 @@ const Create = () => {
   const [content, setContent] = useState("");
   const [cover, setCover] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const blog = { title, summary, content, cover };
+    if (!title || !summary || !content || !cover) {
+      return toast.error("All fields are required");
+    }
 
-    console.log(blog);
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("summary", summary);
+    formData.append("content", content);
+    formData.append("cover", cover);
+
+    const response = await fetch("api/blog/create", {
+      method: "POST",
+      headers: {
+        "x-auth-token": `${userDetails.token}`,
+      },
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (response.status === 201) {
+      toast.success(data.message);
+      navigate("/app");
+    } else {
+      toast.error(data.message);
+    }
   };
 
   return (

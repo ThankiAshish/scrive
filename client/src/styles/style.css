@@ -470,11 +470,11 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
 /* Pages > Home */
 .home {
   display: grid;
-  grid-template-columns: repeat(2, minmax(300px, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 1rem;
   place-content: start;
-  place-items: center;
   min-height: calc(100dvh - 120px);
+  width: 100%;
   padding-block: 2rem;
 }
 
@@ -514,7 +514,8 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
   height: 100%;
   width: 55%;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 1rem;
   padding: 1rem;
   backdrop-filter: blur(10px);
   border-radius: 3px;

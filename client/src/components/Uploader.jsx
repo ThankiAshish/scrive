@@ -30,15 +30,17 @@ const Uploader = ({ cover, setCover }) => {
         onChange={({ target: { files } }) => {
           files[0] && setFileName(files[0].name);
           if (files) {
-            const reader = new FileReader();
-            reader.onload = () => setCover(reader.result);
-            reader.readAsDataURL(files[0]);
+            setCover(files[0]);
           }
         }}
       />
       {cover ? (
         <div className="image-preview">
-          <img src={cover} alt={fileName} className="file-preview" />
+          <img
+            src={URL.createObjectURL(cover)}
+            alt={fileName}
+            className="file-preview"
+          />
           <button className="clear-button" onClick={clearImage}>
             <FontAwesomeIcon icon={faTimes} className="icon" />
           </button>
@@ -54,7 +56,7 @@ const Uploader = ({ cover, setCover }) => {
 };
 
 Uploader.propTypes = {
-  cover: PropTypes.string.isRequired,
+  cover: PropTypes.object,
   setCover: PropTypes.func.isRequired,
 };
 
