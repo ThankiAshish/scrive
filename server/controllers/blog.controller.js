@@ -30,6 +30,20 @@ const blogController = {
       });
     }
   },
+  getById: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const blog = await blogServices.getById(id);
+
+      return res.status(200).json({
+        blog,
+      });
+    } catch (error) {
+      return res.status(400).json({
+        message: error.message,
+      });
+    }
+  },
   create: [
     upload.single("cover"),
     async (req, res) => {

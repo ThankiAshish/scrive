@@ -12,6 +12,18 @@ const blogServices = {
       throw new Error(error.message);
     }
   },
+  getById: async (id) => {
+    try {
+      const blog = await Blog.findById(id).populate(
+        "author",
+        "username profilePicture"
+      );
+
+      return blog;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  },
   create: async (title, summary, cover, content, author) => {
     try {
       const newBlog = new Blog({
