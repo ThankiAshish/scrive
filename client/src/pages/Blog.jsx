@@ -1,79 +1,67 @@
-import Article from "../assets/images/Article.png";
+import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Blog = () => {
+  const [blog, setBlog] = useState({});
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  if (!location.state) {
+    navigate("/");
+  }
+
+  const id = location.state.id;
+
+  useEffect(() => {
+    const fetchBlog = async () => {
+      const response = await fetch(`api/blog/${id}`);
+
+      if (response.status === 200) {
+        const data = await response.json();
+        setBlog(data.blog);
+      } else {
+        toast.error("An error occurred. Please try again later.");
+      }
+    };
+
+    fetchBlog();
+  }, [id]);
+
   return (
-    <div className="container">
-      <div className="blog-container">
-        <div className="blog-header">
-          <h1 className="blog-title">Blog Title</h1>
-          <div className="blog-author">
-            <img
-              src="https://api.dicebear.com/7.x/adventurer/svg?seed=JohnDoe&scale=75&backgroundType=gradientLinear&earringsProbability=50&featuresProbability=50&glassesProbability=50&backgroundColor=b6e3f4,c0aede,d1d4f9"
-              alt="avatar"
-            />
-            <div className="blog-details">
-              <h4>John Doe</h4>
-              <p>01/01/20XX</p>
+    blog &&
+    blog.author && (
+      <div className="container">
+        <div className="blog-container">
+          <div className="blog-header">
+            <h1 className="blog-title">{blog.title}</h1>
+            <div className="blog-author">
+              <img
+                src={blog.author.profilePicture + blog.author.username}
+                alt="avatar"
+              />
+              <div className="blog-details">
+                <h4>{blog.author.username}</h4>
+                <p>
+                  {new Date(blog.createdAt).getMonth() + 1}/
+                  {new Date(blog.createdAt).getDate()}/
+                  {new Date(blog.createdAt).getFullYear()}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-        <img src={Article} alt="article" className="blog-image" />
-        <div className="blog-content">
-          <h2 className="blog-heading_2">
-            Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit
-          </h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
-          <p>
-            Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.
-          </p>
-          <h3 className="blog-heading_3">Lorem ipsum dolor</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
-          <p>
-            Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
-          <p>
-            Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
-          <p>
-            Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum
-          </p>
+          <img
+            src={`${import.meta.env.VITE_API_URL}/uploads/covers/${blog.cover}`}
+            alt="article"
+            className="blog-image"
+          />
+          <div
+            className="blog-content"
+            dangerouslySetInnerHTML={{ __html: blog.content }}
+          />
         </div>
       </div>
-    </div>
+    )
   );
 };
 

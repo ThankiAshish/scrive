@@ -9,7 +9,7 @@ const Blog = ({ blog }) => {
   };
 
   return (
-    <Link to="/blog">
+    <Link to="/blog" state={{ id: blog._id }}>
       <div className="blog" style={blogStyle}>
         <div className="blog-content">
           <h2>{blog.title}</h2>
@@ -22,11 +22,9 @@ const Blog = ({ blog }) => {
             <div className="blog-author">
               <h4>{blog.author.username}</h4>
               <p>
-                {new Date(blog.createdAt).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
+                {new Date(blog.createdAt).getMonth() + 1}/
+                {new Date(blog.createdAt).getDate()}/
+                {new Date(blog.createdAt).getFullYear()}
               </p>
             </div>
           </div>
