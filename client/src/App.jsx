@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import UserProvider from "./context/UserContext";
+import BlogProvider from "./context/BlogContext";
 
 import MainLayout from "./layouts/MainLayout";
 
@@ -20,24 +21,29 @@ import Create from "./pages/Create";
 const App = () => {
   return (
     <UserProvider>
-      <Router>
-        <Routes>
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/reset-password-info" element={<ResetPasswordInfo />} />
-          <Route path="/" element={<MainLayout />}>
-            <Route index element={<Welcome />} />
-            <Route path="/app" element={<Home />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/create" element={<Create />} />
-          </Route>
-        </Routes>
-      </Router>
+      <BlogProvider>
+        <Router>
+          <Routes>
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route
+              path="/reset-password-info"
+              element={<ResetPasswordInfo />}
+            />
+            <Route path="/" element={<MainLayout />}>
+              <Route index element={<Welcome />} />
+              <Route path="/app" element={<Home />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/create" element={<Create />} />
+            </Route>
+          </Routes>
+        </Router>
+      </BlogProvider>
     </UserProvider>
   );
 };

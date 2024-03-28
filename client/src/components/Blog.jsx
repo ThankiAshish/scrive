@@ -1,30 +1,33 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Blog = ({ backgroundImage }) => {
+const Blog = ({ blog }) => {
   const blogStyle = {
-    backgroundImage: `url(${backgroundImage})`,
+    backgroundImage: `url(${import.meta.env.VITE_API_URL}/uploads/covers/${
+      blog.cover
+    })`,
   };
 
   return (
     <Link to="/blog">
       <div className="blog" style={blogStyle}>
         <div className="blog-content">
-          <h2>Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit</h2>
-          <p className="summary">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
+          <h2>{blog.title}</h2>
+          <p className="summary">{blog.summary}</p>
           <div className="blog-details">
             <img
-              src="https://api.dicebear.com/7.x/adventurer/svg?seed=JohnDoe&scale=75&backgroundType=gradientLinear&earringsProbability=50&featuresProbability=50&glassesProbability=50&backgroundColor=b6e3f4,c0aede,d1d4f9"
+              src={blog.author.profilePicture + blog.author.username}
               alt="avatar"
             />
             <div className="blog-author">
-              <h4>John Doe</h4>
-              <p>01/01/20XX</p>
+              <h4>{blog.author.username}</h4>
+              <p>
+                {new Date(blog.createdAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </p>
             </div>
           </div>
         </div>
@@ -34,7 +37,7 @@ const Blog = ({ backgroundImage }) => {
 };
 
 Blog.propTypes = {
-  backgroundImage: PropTypes.string.isRequired,
+  blog: PropTypes.object.isRequired,
 };
 
 export default Blog;
