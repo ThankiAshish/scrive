@@ -41,6 +41,22 @@ const blogServices = {
       throw new Error(error.message);
     }
   },
+  update: async (id, title, summary, cover, content) => {
+    try {
+      const blog = await Blog.findById(id);
+
+      blog.title = title;
+      blog.summary = summary;
+      blog.cover = cover;
+      blog.content = content;
+
+      await blog.save();
+
+      return blog;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  },
 };
 
 module.exports = blogServices;
