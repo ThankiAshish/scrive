@@ -124,10 +124,28 @@ input {
   font-weight: 600;
 }
 
+.btn-primary {
+  outline: none;
+  border: 1px solid transparent;
+  background-color: var(--primary);
+  color: var(--background);
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
 .btn-outline {
   background-color: transparent;
   border: 1px solid var(--primary);
   color: var(--primary);
+}
+
+.btn-outline.btn-delete {
+  background-color: transparent;
+  border: 1px solid var(--error);
+  color: var(--error);
 }
 
 .btn:hover {
@@ -138,6 +156,12 @@ input {
 
 .btn-outline:hover {
   background-color: var(--primary);
+  border: 1px solid transparent;
+  color: var(--background);
+}
+
+.btn-delete:hover {
+  background-color: var(--error);
   border: 1px solid transparent;
   color: var(--background);
 }
@@ -156,6 +180,27 @@ input {
   color: var(--secondary);
   text-decoration: underline;
   cursor: pointer;
+}
+
+.swan-popup {
+  background: var(--background);
+  color: var(--white);
+}
+
+.swan-icon {
+  color: var(--error);
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+  outline: none;
+  border: 1px solid transparent;
+  background-color: var(--primary);
+  color: var(--background);
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 3px;
+  font-weight: 600;
 }
 
 /* Navbar > Global */
@@ -242,6 +287,45 @@ input {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Components > Uploader */
+.uploader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed var(--grey);
+  cursor: pointer;
+  border-radius: 5px;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.uploader .default-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.uploader .default-preview .icon {
+  font-size: 2rem;
+  color: var(--secondary);
+}
+
+.uploader .default-preview p {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--grey);
+}
+
+.uploader .image-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 /* Pages > Welcome */
@@ -599,8 +683,28 @@ input {
   width: 100%;
 }
 
-.user-profile form .btn-container {
+.user-profile .btn-container {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+/* Pages > Create */
+.create-blog {
+  min-height: calc(100dvh - 120px);
+  padding-block: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.create-blog h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.create-blog form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }

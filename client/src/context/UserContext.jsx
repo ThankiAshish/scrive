@@ -1,10 +1,36 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import UserStore from "../stores/UserStore";
 
 const UserContext = createContext({});
 
 const UserProvider = ({ children }) => {
+  const { userDetails } = UserStore();
   const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      if (userDetails) {
+        const response = await fetch("api/auth/user", {
+          headers: {
+            "Content-Type": "application/json",
+            "x-auth-token": `${userDetails.token}`,
+          },
+        });
+
+        if (response.status === 200) {
+          const data = await response.json();
+          setUser(data.user);
+        } else {
+          setUser({});
+        }
+      } else {
+        setUser({});
+      }
+    };
+
+    fetchUser();
+  }, [userDetails]);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
@@ -18,13 +44,7 @@ UserProvider.propTypes = {
 };
 
 export const UserState = () => {
-  const context = useContext(UserContext);
-
-  if (!context) {
-    throw new Error("UserState must be used within a UserProvider");
-  }
-
-  return context;
+  return useContext(UserContext);
 };
 
 export default UserProvider;

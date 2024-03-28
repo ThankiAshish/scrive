@@ -3,10 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import UserStore from "../stores/UserStore";
+import { UserState } from "../context/UserContext";
 
 const Login = () => {
   const navigate = useNavigate();
   const { loginData, loginState, setLoginState } = UserStore();
+  const { setUser } = UserState();
 
   useEffect(() => {
     if (loginState) {
@@ -45,6 +47,7 @@ const Login = () => {
       if (response.status === 200) {
         loginData(data.user);
         setLoginState(true);
+        setUser(data.user);
         toast.success(data.message);
         navigate("/app");
       } else {

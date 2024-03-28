@@ -73,7 +73,7 @@ const getUser = async (id) => {
   return user;
 };
 
-const updateUser = async (id, username, email, profilePicture) => {
+const updateUser = async (id, username, email) => {
   const user = await User.findById(id);
 
   if (!user) {
@@ -82,7 +82,6 @@ const updateUser = async (id, username, email, profilePicture) => {
 
   user.username = username;
   user.email = email;
-  user.profilePicture = profilePicture;
 
   await user.save();
 
