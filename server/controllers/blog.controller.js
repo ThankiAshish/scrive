@@ -106,6 +106,11 @@ const blogController = {
   delete: async (req, res) => {
     try {
       const { id } = req.params;
+      const blog = await blogServices.getById(id);
+
+      const coverImagePath = path.join("public/uploads/covers", blog.cover);
+      fs.unlinkSync(coverImagePath);
+
       await blogServices.delete(id);
 
       return res.status(200).json({
