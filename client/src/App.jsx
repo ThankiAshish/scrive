@@ -17,6 +17,7 @@ import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import Profile from "./pages/Profile";
 import Create from "./pages/Create";
+import Edit from "./pages/Edit";
 
 const App = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
               <Route path="/blog" element={<Blog />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/create" element={<Create />} />
+              <Route path="/edit" element={<Edit />} />
             </Route>
           </Routes>
         </Router>

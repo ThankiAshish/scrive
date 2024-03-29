@@ -599,6 +599,38 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
   font-weight: 800;
 }
 
+.blog-container .blog-header .blog-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.blog-container .blog-header .blog-controls .blog-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.blog-container .blog-header .blog-controls .blog-actions .edit-icon {
+  color: var(--secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.blog-container .blog-header .blog-controls .blog-actions .edit-icon:hover {
+  color: var(--primary);
+}
+
+.blog-container .blog-header .blog-controls .blog-actions .delete-icon {
+  color: var(--error);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.blog-container .blog-header .blog-controls .blog-actions .delete-icon:hover {
+  color: var(--primary);
+}
+
 .blog-container .blog-header .blog-author {
   display: flex;
   align-items: center;
