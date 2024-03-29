@@ -12,6 +12,17 @@ const blogServices = {
       throw new Error(error.message);
     }
   },
+  getAllByAuthor: async (author) => {
+    try {
+      const blogs = await Blog.find({ author })
+        .populate("author", "username profilePicture")
+        .sort({ createdAt: -1 });
+
+      return blogs;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  },
   getById: async (id) => {
     try {
       const blog = await Blog.findById(id).populate(

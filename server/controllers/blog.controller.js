@@ -31,6 +31,20 @@ const blogController = {
       });
     }
   },
+  getAllByAuthor: async (req, res) => {
+    try {
+      const { author } = req.params;
+      const blogs = await blogServices.getAllByAuthor(author);
+
+      return res.status(200).json({
+        blogs,
+      });
+    } catch (error) {
+      return res.status(400).json({
+        message: error.message,
+      });
+    }
+  },
   getById: async (req, res) => {
     try {
       const { id } = req.params;
