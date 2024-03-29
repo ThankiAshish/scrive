@@ -8,5 +8,6 @@ const blogRouter = express.Router();
 blogRouter.get("/", blogController.getAll);
 blogRouter.get("/:id", blogController.getById);
 blogRouter.post("/create", authMiddleware, blogController.create);
+blogRouter.put("/:id", authMiddleware, blogController.update);
 
 module.exports = blogRouter;

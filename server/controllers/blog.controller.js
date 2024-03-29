@@ -72,6 +72,37 @@ const blogController = {
       }
     },
   ],
+  update: [
+    upload.single("cover"),
+    async (req, res) => {
+      try {
+        const { id } = req.params;
+        const { title, summary, content } = req.body;
+        let cover = req.body.cover;
+
+        if (req.file) {
+          cover = req.file.filename;
+        }
+
+        const blog = await blogServices.update(
+          id,
+          title,
+          summary,
+          cover,
+          content
+        );
+
+        return res.status(200).json({
+          message: "Blog updated successfully",
+          blog,
+        });
+      } catch (error) {
+        return res.status(400).json({
+          message: error.message,
+        });
+      }
+    },
+  ],
 };
 
 module.exports = blogController;
