@@ -4,6 +4,8 @@ import Blog from "../components/Blog";
 
 import { BlogState } from "../context/BlogContext";
 
+import NotFound from "../assets/images/not-found.svg";
+
 const Home = () => {
   const { blogs, setBlogs } = BlogState();
 
@@ -24,13 +26,18 @@ const Home = () => {
 
   return (
     <div className="container">
-      <main className="home">
-        {blogs.length > 0 ? (
-          blogs.map((blog) => <Blog key={blog._id} blog={blog} />)
-        ) : (
-          <p>No blogs available</p>
-        )}
-      </main>
+      {blogs.length > 0 ? (
+        <main className="home">
+          {blogs.map((blog) => (
+            <Blog key={blog._id} blog={blog} />
+          ))}
+        </main>
+      ) : (
+        <main className="default">
+          <img src={NotFound} alt="Not Found" />
+          <h1>No Blogs Found!</h1>
+        </main>
+      )}
     </div>
   );
 };

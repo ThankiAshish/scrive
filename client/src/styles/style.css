@@ -468,6 +468,30 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
 }
 
 /* Pages > Home */
+.default {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  height: calc(100dvh - 120px);
+  width: 100%;
+}
+
+.default img {
+  width: 200px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.default h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--grey);
+}
+
 .home {
   display: grid;
   grid-template-columns: 1fr 1fr;
