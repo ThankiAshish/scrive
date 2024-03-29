@@ -9,5 +9,6 @@ blogRouter.get("/", blogController.getAll);
 blogRouter.get("/:id", blogController.getById);
 blogRouter.post("/create", authMiddleware, blogController.create);
 blogRouter.put("/:id", authMiddleware, blogController.update);
+blogRouter.delete("/:id", authMiddleware, blogController.delete);
 
 module.exports = blogRouter;

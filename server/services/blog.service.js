@@ -57,6 +57,13 @@ const blogServices = {
       throw new Error(error.message);
     }
   },
+  delete: async (id) => {
+    try {
+      await Blog.findByIdAndDelete(id);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  },
 };
 
 module.exports = blogServices;
