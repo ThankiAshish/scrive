@@ -3,9 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import { UserState } from "../context/UserContext";
+import { BlogState } from "../context/BlogContext";
 
 const UserHeader = () => {
   const { user } = UserState();
+  const { blogs } = BlogState();
 
   return (
     <div className="container">
@@ -15,7 +17,7 @@ const UserHeader = () => {
         </Link>
         <ul className="nav-links">
           <li>
-            <Link to="/search">
+            <Link to="/search" state={blogs.length > 0 ? { blogs } : null}>
               <FontAwesomeIcon icon={faSearch} />
             </Link>
           </li>
