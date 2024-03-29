@@ -18,6 +18,8 @@ import Blog from "./pages/Blog";
 import Profile from "./pages/Profile";
 import Create from "./pages/Create";
 import Edit from "./pages/Edit";
+import Blogs from "./pages/Blogs";
+import Search from "./pages/Search";
 
 const App = () => {
   return (
@@ -42,6 +44,8 @@ const App = () => {
               <Route path="/profile" element={<Profile />} />
               <Route path="/create" element={<Create />} />
               <Route path="/edit" element={<Edit />} />
+              <Route path="/blogs" element={<Blogs />} />
+              <Route path="/search" element={<Search />} />
             </Route>
           </Routes>
         </Router>

@@ -1,5 +1,6 @@
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs");
 
 const blogServices = require("../services/blog.service");
 
@@ -49,7 +50,6 @@ const blogController = {
     async (req, res) => {
       try {
         const { title, summary, content } = req.body;
-        console.log(req.body);
         const cover = req.file.filename;
         const author = req.user._id;
 

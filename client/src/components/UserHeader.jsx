@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdd } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import { UserState } from "../context/UserContext";
 
@@ -14,6 +14,11 @@ const UserHeader = () => {
           <h1 className="logo">Scrive</h1>
         </Link>
         <ul className="nav-links">
+          <li>
+            <Link to="/search">
+              <FontAwesomeIcon icon={faSearch} />
+            </Link>
+          </li>
           <li>
             <Link to="/create" className="create-btn">
               <FontAwesomeIcon icon={faAdd} />

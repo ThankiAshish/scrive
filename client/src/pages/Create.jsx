@@ -21,7 +21,7 @@ const Create = () => {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [content, setContent] = useState("");
-  const [cover, setCover] = useState("");
+  const [cover, setCover] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
