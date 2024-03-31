@@ -11,12 +11,15 @@ const UserProvider = ({ children }) => {
   useEffect(() => {
     const fetchUser = async () => {
       if (userDetails) {
-        const response = await fetch("/api/auth/user", {
-          headers: {
-            "Content-Type": "application/json",
-            "x-auth-token": `${userDetails.token}`,
-          },
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/auth/user`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "x-auth-token": `${userDetails.token}`,
+            },
+          }
+        );
 
         if (response.status === 200) {
           const data = await response.json();

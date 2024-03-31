@@ -28,14 +28,17 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("/api/auth/user", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        "x-auth-token": `${userDetails.token}`,
-      },
-      body: JSON.stringify(formData),
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/auth/user`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": `${userDetails.token}`,
+        },
+        body: JSON.stringify(formData),
+      }
+    );
 
     if (response.status === 200) {
       const data = await response.json();

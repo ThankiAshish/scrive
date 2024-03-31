@@ -36,13 +36,16 @@ const Create = () => {
     formData.append("content", content);
     formData.append("cover", cover);
 
-    const response = await fetch("/api/blog/create", {
-      method: "POST",
-      headers: {
-        "x-auth-token": `${userDetails.token}`,
-      },
-      body: formData,
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/blog/create`,
+      {
+        method: "POST",
+        headers: {
+          "x-auth-token": `${userDetails.token}`,
+        },
+        body: formData,
+      }
+    );
 
     const data = await response.json();
 

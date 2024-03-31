@@ -49,13 +49,16 @@ const Edit = () => {
       formData.append("cover", editedCover);
     }
 
-    const response = await fetch(`/api/blog/${id}`, {
-      method: "PUT",
-      headers: {
-        "x-auth-token": `${userDetails.token}`,
-      },
-      body: formData,
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/blog/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "x-auth-token": `${userDetails.token}`,
+        },
+        body: formData,
+      }
+    );
 
     const data = await response.json();
 
