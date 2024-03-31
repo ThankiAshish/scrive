@@ -28,7 +28,7 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("api/auth/user", {
+    const response = await fetch("/api/auth/user", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

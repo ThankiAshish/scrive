@@ -36,7 +36,7 @@ const Create = () => {
     formData.append("content", content);
     formData.append("cover", cover);
 
-    const response = await fetch("api/blog/create", {
+    const response = await fetch("/api/blog/create", {
       method: "POST",
       headers: {
         "x-auth-token": `${userDetails.token}`,

@@ -44,7 +44,7 @@ const Register = () => {
           "https://api.dicebear.com/7.x/adventurer/svg?scale=75&backgroundType=gradientLinear&earringsProbability=50&featuresProbability=50&glassesProbability=50&backgroundColor=b6e3f4,c0aede,d1d4f9&seed=",
       });
 
-      const response = await fetch("api/auth/register", {
+      const response = await fetch("/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

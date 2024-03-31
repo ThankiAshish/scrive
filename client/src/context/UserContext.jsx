@@ -11,7 +11,7 @@ const UserProvider = ({ children }) => {
   useEffect(() => {
     const fetchUser = async () => {
       if (userDetails) {
-        const response = await fetch("api/auth/user", {
+        const response = await fetch("/api/auth/user", {
           headers: {
             "Content-Type": "application/json",
             "x-auth-token": `${userDetails.token}`,

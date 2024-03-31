@@ -21,7 +21,7 @@ const Blog = () => {
 
   useEffect(() => {
     const fetchBlog = async () => {
-      const response = await fetch(`api/blog/${id}`);
+      const response = await fetch(`/api/blog/${id}`);
 
       if (response.status === 200) {
         const data = await response.json();
@@ -51,7 +51,7 @@ const Blog = () => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`api/blog/${id}`, {
+        fetch(`/api/blog/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

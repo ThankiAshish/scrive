@@ -49,7 +49,7 @@ const Edit = () => {
       formData.append("cover", editedCover);
     }
 
-    const response = await fetch(`api/blog/${id}`, {
+    const response = await fetch(`/api/blog/${id}`, {
       method: "PUT",
       headers: {
         "x-auth-token": `${userDetails.token}`,
