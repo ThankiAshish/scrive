@@ -1,5 +1,8 @@
 require("dotenv").config({ path: ".env" });
 
+const fs = require("fs");
+const path = require("path");
+
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
@@ -17,6 +20,12 @@ app.use(
     credentials: true,
   })
 );
+
+const uploadDirectory = path.join(__dirname, "public/uploads/covers");
+
+if (!fs.existsSync(uploadDirectory)) {
+  fs.mkdirSync(uploadDirectory, { recursive: true });
+}
 
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
