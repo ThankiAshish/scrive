@@ -1,15 +1,49 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ForgotPassword = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "" });
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    if (!formData.email) {
+      return toast.error("Email is required!");
+    }
+
+    const toastId = toast("Sending Password Reset Email...", {
+      autoClose: false,
+    });
+
+    try {
+      const response = await fetch("api/auth/forgot-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      toast.dismiss(toastId);
+
+      if (response.status === 200) {
+        toast.success(data.message);
+        navigate("/reset-password-info");
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.dismiss(toastId);
+      toast.error("An error occurred, please try again");
+    }
   };
 
   return (

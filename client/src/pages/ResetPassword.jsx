@@ -1,18 +1,54 @@
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ResetPassword = () => {
+  const navigate = useNavigate();
+  const { token } = useParams();
+
   const [formData, setFormData] = useState({
     password: "",
     confirmPassword: "",
+    token: "",
   });
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    if (formData.password.length < 8) {
+      return toast.error("Password must be at least 8 characters long!");
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      return toast.error("Passwords do not match!");
+    }
+
+    const toastId = toast("Resetting Password...", { autoClose: false });
+
+    setFormData({ ...formData, token });
+
+    const response = await fetch("/api/auth/reset-password", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+
+    if (response.status === 200) {
+      toast.dismiss(toastId);
+      toast.success(data.message);
+      navigate("/login");
+    } else {
+      toast.dismiss(toastId);
+      toast.error(data.message);
+    }
   };
 
   return (

@@ -37,6 +37,33 @@ const userController = {
       res.status(400).json({ message: error.message });
     }
   },
+  deleteUser: async (req, res) => {
+    try {
+      const user = await userServices.deleteUser(req.user._id);
+      res.status(200).json({ user: user, message: "User Deleted!" });
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  },
+  forgotPassword: async (req, res) => {
+    const { email } = req.body;
+    try {
+      await userServices.forgotPassword(email);
+      res.status(200).json({ message: "Password Reset Email Sent!" });
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  },
+  resetPassword: async (req, res) => {
+    const { password, token } = req.body;
+    console.log(req.body);
+    try {
+      await userServices.resetPassword(token, password);
+      res.status(200).json({ message: "Password Reset Successful!" });
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  },
 };
 
 module.exports = userController;
