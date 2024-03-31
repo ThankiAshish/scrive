@@ -17,7 +17,7 @@ const Search = () => {
     }
   }, [location, navigate]);
 
-  const { blogs } = location.state.blogs ? location.state : { blogs: [] };
+  const { blogs } = location.state ? location.state : { blogs: [] };
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
@@ -59,14 +59,14 @@ const Search = () => {
           value={search}
           onChange={handleSearchChange}
         />
-        {searchResults.length > 0 ? (
+        {searchResults && searchResults.length > 0 ? (
           renderBlogs(searchResults)
         ) : search !== "" ? (
           <main className="default">
             <img src={NotFound} alt="Not Found" />
             <h1>No Blogs Found!</h1>
           </main>
-        ) : blogs.length > 0 ? (
+        ) : blogs && blogs.length > 0 ? (
           renderBlogs(blogs)
         ) : (
           <main className="default">

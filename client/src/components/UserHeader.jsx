@@ -17,7 +17,7 @@ const UserHeader = () => {
         </Link>
         <ul className="nav-links">
           <li>
-            <Link to="/search" state={blogs.length > 0 ? { blogs } : null}>
+            <Link to="/search" state={blogs.length > 0 ? { blogs } : []}>
               <FontAwesomeIcon icon={faSearch} />
             </Link>
           </li>
