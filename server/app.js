@@ -5,7 +5,6 @@ const path = require("path");
 
 const express = require("express");
 const cors = require("cors");
-const history = require("connect-history-api-fallback");
 
 require("./config/db.config");
 
@@ -27,18 +26,11 @@ if (!fs.existsSync(uploadDirectory)) {
   fs.mkdirSync(uploadDirectory, { recursive: true });
 }
 
-app.use(history());
-app.use(express.static(path.join(__dirname, "..", "client", "dist")));
-
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api", router);
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "client", "dist", "index.html"));
-});
 
 app.get("/404", (req, res) => {
   res.status(404).json({ message: "Not found" });
