@@ -14,6 +14,12 @@
 }
 
 @media screen and (max-width: 768px) {
+  body {
+    width: 100vw !important;
+    overflow: hidden !important;
+    height: 100dvh !important;
+  }
+
   .logo {
     font-size: 2.5rem !important;
   }
@@ -64,6 +70,10 @@
   }
 
   /* Pages > Login */
+  .auth-showcase .container {
+    align-items: center !important;
+  }
+
   .auth-box {
     width: 100% !important;
     justify-content: center !important;

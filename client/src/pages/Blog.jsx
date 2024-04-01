@@ -97,7 +97,9 @@ const Blog = () => {
                   </p>
                 </div>
               </div>
-              {blog.author._id === userDetails._id ? (
+              {blog.author &&
+              userDetails &&
+              blog.author._id === userDetails._id ? (
                 <div className="blog-actions">
                   <Link
                     to="/edit"
