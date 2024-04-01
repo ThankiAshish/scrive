@@ -13,7 +13,7 @@ const GuestHeader = () => {
           <h1 className="logo">Scrive</h1>
         </Link>
         <ul className={`nav-links ${isOpen ? "active" : ""}`}>
-          <li>
+          {/* <li>
             <Link to="/about" className="nav-link">
               About
             </Link>
@@ -22,7 +22,7 @@ const GuestHeader = () => {
             <Link to="/contact" className="nav-link">
               Contact
             </Link>
-          </li>
+          </li> */}
           <div className="btn-container">
             <li>
               <Link to="/login">
