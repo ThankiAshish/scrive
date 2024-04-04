@@ -56,7 +56,6 @@ const userController = {
   },
   resetPassword: async (req, res) => {
     const { password, token } = req.body;
-    console.log(req.body);
     try {
       await userServices.resetPassword(token, password);
       res.status(200).json({ message: "Password Reset Successful!" });

@@ -9,7 +9,7 @@ const ResetPassword = () => {
   const [formData, setFormData] = useState({
     password: "",
     confirmPassword: "",
-    token: "",
+    token: token,
   });
 
   const handleInputChange = (e) => {
@@ -28,8 +28,6 @@ const ResetPassword = () => {
     }
 
     const toastId = toast("Resetting Password...", { autoClose: false });
-
-    setFormData({ ...formData, token });
 
     const response = await fetch(
       `${import.meta.env.VITE_API_URL}/api/auth/reset-password`,

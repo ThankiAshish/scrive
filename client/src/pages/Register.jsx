@@ -19,7 +19,8 @@ const Register = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    profilePicture: "",
+    profilePicture:
+      "https://api.dicebear.com/7.x/adventurer/svg?scale=75&backgroundType=gradientLinear&earringsProbability=50&featuresProbability=50&glassesProbability=50&backgroundColor=b6e3f4,c0aede,d1d4f9&seed=",
   });
 
   const handleInputChange = (e) => {
@@ -37,12 +38,6 @@ const Register = () => {
       if (formData.password !== formData.confirmPassword) {
         return toast.error("Passwords do not match");
       }
-
-      setFormData({
-        ...formData,
-        profilePicture:
-          "https://api.dicebear.com/7.x/adventurer/svg?scale=75&backgroundType=gradientLinear&earringsProbability=50&featuresProbability=50&glassesProbability=50&backgroundColor=b6e3f4,c0aede,d1d4f9&seed=",
-      });
 
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/auth/register`,
